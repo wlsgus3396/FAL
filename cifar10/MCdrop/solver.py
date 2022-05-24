@@ -54,7 +54,7 @@ class Solver:
         
         #optim_task_model = optim.SGD(task_model.parameters(), lr=lr_input)
         #optim_task_model = optim.Adam(task_model.parameters(), lr=5e-3)
-        optim_task_model = optim.SGD(task_model.parameters(), lr=lr_input ,weight_decay=5e-4, momentum=0.9 )
+        optim_task_model = optim.SGD(task_model.parameters(), lr=lr_input )
     
         task_model.train()
         if self.args.cuda:

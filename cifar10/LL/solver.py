@@ -47,9 +47,9 @@ class Solver:
         unlabeled_data = self.read_data(unlabeled_dataloader, labels=False)
         
         
-        #optim_task_model = optim.SGD(task_model.parameters(), lr=lr_input ,weight_decay=5e-4, momentum=0.9)
+        #optim_task_model = optim.SGD(task_model.parameters(), lr=lr_input )
         #optim_task_model = optim.Adam(task_model.parameters(), lr=5e-3)
-        optim_task_model = optim.SGD(task_model.parameters(), lr=lr_input ,weight_decay=5e-4, momentum=0.9 )
+        optim_task_model = optim.SGD(task_model.parameters(), lr=lr_input )
         loss_pred_criterion = MarginRankingLoss_learning_loss()
         task_model.train()
         if self.args.cuda:
@@ -94,7 +94,7 @@ class Solver:
             task_model2=torch.nn.Linear(num_ftrs, self.args.num_classes)
                 
             LN = LN.train()
-            optim_LN = optim.SGD(LN.parameters(), lr=lr_input ,weight_decay=5e-4, momentum=0.9)
+            optim_LN = optim.SGD(LN.parameters(), lr=lr_input )
             
             
             

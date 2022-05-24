@@ -126,8 +126,8 @@ def main(args):
     #Itask_model=vgg.vgg16_bn(num_classes=args.num_classes)
 
     all_indices1=copy.deepcopy(all_indices)
-    unlabeled_indices=noniid(datasets.CIFAR10(args.data_path, download=True, transform=cifar_transformer(), train=True),args.num_clients)
     for k in range(args.num_clients):
+        unlabeled_indices.append(list(random.sample(list(all_indices1), args.unlabeledbudget)))
         all_indices1=np.setdiff1d(list(all_indices1), unlabeled_indices[k])
         labeled_indices.append(list(random.sample(list(unlabeled_indices[k]), args.initial_budget))) #initial budget
         unlabeled_indices[k]=list(np.setdiff1d(list(unlabeled_indices[k]), labeled_indices[k]))

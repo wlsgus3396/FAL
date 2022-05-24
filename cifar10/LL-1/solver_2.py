@@ -53,9 +53,9 @@ class Solver2:
         unlabeled_data = self.read_data(unlabeled_dataloader, labels=False)
         
         
-        #optim_task_model = optim.SGD(task_model.parameters(), lr=lr_input ,weight_decay=5e-4, momentum=0.9)
+        #optim_task_model = optim.SGD(task_model.parameters(), lr=lr_input )
         #optim_task_model = optim.Adam(task_model.parameters(), lr=5e-3)
-        optim_task_model = optim.SGD(task_model.parameters(), lr=lr_input ,weight_decay=5e-4, momentum=0.9 )
+        optim_task_model = optim.SGD(task_model.parameters(), lr=lr_input )
     
         task_model.train()
         if self.args.cuda:
@@ -103,7 +103,7 @@ class Solver2:
             task_model2=torch.nn.Linear(num_ftrs, self.args.num_classes)
                 
             LN = LN.train()
-            optim_LN = optim.SGD(LN.parameters(), lr=lr_input ,weight_decay=5e-4, momentum=0.9)
+            optim_LN = optim.SGD(LN.parameters(), lr=lr_input )
             
             sched_backbone=optim.lr_scheduler.MultiStepLR(optim_task_model,milestones=change_list,gamma=0.2)
             sched_LN=optim.lr_scheduler.MultiStepLR(optim_LN,milestones=change_list,gamma=0.2)
